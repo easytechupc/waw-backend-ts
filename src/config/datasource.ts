@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import { DataSource, DataSourceOptions } from "typeorm";
 import "dotenv/config";
 
