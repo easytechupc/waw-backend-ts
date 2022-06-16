@@ -1,12 +1,7 @@
-import {
-  TypeOrmModuleAsyncOptions,
-  TypeOrmModuleOptions,
-} from "@nestjs/typeorm";
+import { TypeOrmModuleOptions } from "@nestjs/typeorm";
 
-export type ORMConfigFactory = TypeOrmModuleAsyncOptions["useFactory"];
-
-export const ormConfigFactory: ORMConfigFactory = () => {
-  const isProd = process.env.NODE_ENV === "production";
+export const ormConfigFactory = () => {
+  const isProduction = process.env.NODE_ENV === "production";
 
   return Promise.resolve<TypeOrmModuleOptions>({
     type: "mysql",
@@ -16,7 +11,7 @@ export const ormConfigFactory: ORMConfigFactory = () => {
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
     autoLoadEntities: true,
-    logging: isProd ? ["error", "warn"] : "all",
-    synchronize: !isProd,
+    logging: isProduction ? ["error", "warn"] : "all",
+    synchronize: !isProduction,
   });
 };
