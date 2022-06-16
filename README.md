@@ -1,29 +1,40 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# WAW for TypeScript
 
-<p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-
-<p align="center">
-  <a href="https://github.com/easytechupc/waw-backend-ts/blob/main/LICENSE" target="_blank">
-    <img src="https://img.shields.io/github/license/easytechupc/waw-backend-ts" alt="License" />
-  </a>
-  <a href="https://github.com/easytechupc/waw-backend-ts/actions/workflows/node.yml" target="_blank">
-    <img src="https://img.shields.io/github/workflow/status/easytechupc/waw-backend-ts/node" alt="GitHub Actions" />
-  </a>
-  <a href="https://codecov.io/gh/easytechupc/waw-backend-ts" target="_blank">
-    <img src="https://img.shields.io/codecov/c/github/easytechupc/waw-backend-ts?token=90OQ2UEM1L" alt="Coverage" />
-  </a>
-</p>
+[![License](https://img.shields.io/github/license/easytechupc/waw-backend-ts)](LICENSE)
+[![GitHub Actions](https://img.shields.io/github/workflow/status/easytechupc/waw-backend-ts/node)](https://github.com/easytechupc/waw-backend-ts/actions/workflows/node.yml)
+[![License](https://img.shields.io/codecov/c/github/easytechupc/waw-backend-ts?token=90OQ2UEM1L)](https://codecov.io/gh/easytechupc/waw-backend-ts)
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+WAW Backend Application, written with [TypeScript](https://www.typescriptlang.org/) and [Nest.js](https://nestjs.com/), powered by [Node.js](https://nodejs.org/).
 
-## Installation
+## Recommended IDE Setup
+
+[VSCode](https://code.visualstudio.com/) + [recommended extensions from workspace](.vscode/extensions.json).
+
+## Customize configuration
+
+Check the [Nest.js](https://docs.nestjs.com/) and [TypeORM](https://typeorm.io/) docs.
+
+## Project Setup
+
+Install dependencies using:
 
 ```bash
-$ npm install
+npm install
+```
+
+Then, create a copy of the [`.env.example`](.env.example) file named `.env` and fill the values needed:
+
+```properties
+# Application Settings
+PORT=3000
+# Database Connection
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_USER=your_username
+DB_PASSWORD=your_super_secret_password
+DB_NAME=your_database_name
 ```
 
 ## Running the app
@@ -54,13 +65,7 @@ $ npm run test:cov
 
 ## Support
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+WAW uses Nest.js, which is a MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
 
 ## License
 
