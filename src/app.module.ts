@@ -1,3 +1,5 @@
+import { classes } from "@automapper/classes";
+import { AutomapperModule } from "@automapper/nestjs";
 import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 import { TypeOrmModule } from "@nestjs/typeorm";
@@ -13,6 +15,9 @@ import { ormConfigFactory } from "./config/ormconfig";
     }),
     TypeOrmModule.forRootAsync({
       useFactory: ormConfigFactory,
+    }),
+    AutomapperModule.forRoot({
+      strategyInitializer: classes(),
     }),
   ],
   controllers: [AppController],
