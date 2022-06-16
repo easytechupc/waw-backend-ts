@@ -1,4 +1,4 @@
-import { OfferRequest } from "./offer.request";
+import { OfferRequest } from "./company.request";
 
 describe("OfferRequest", () => {
   it("should be defined", () => {
