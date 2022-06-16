@@ -1,7 +1,7 @@
-import { OfferResource } from "./company.resource";
+import { CompanyResource } from "./company.resource";
 
 describe("OfferResource", () => {
   it("should be defined", () => {
-    expect(new OfferResource()).toBeDefined();
+    expect(new CompanyResource()).toBeDefined();
   });
 });

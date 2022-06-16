@@ -1,6 +1,6 @@
 import { AutoMap } from "@automapper/classes";
 
-export class OfferResource {
+export class CompanyResource {
   @AutoMap()
   id!: number;
 

@@ -1,6 +1,6 @@
 import { AutoMap } from "@automapper/classes";
 
-export class OfferRequest {
+export class CompanyRequest {
   @AutoMap()
   name!: string;
 

@@ -1,7 +1,7 @@
-import { OfferRequest } from "./company.request";
+import { CompanyRequest } from "./company.request";
 
 describe("OfferRequest", () => {
   it("should be defined", () => {
-    expect(new OfferRequest()).toBeDefined();
+    expect(new CompanyRequest()).toBeDefined();
   });
 });
