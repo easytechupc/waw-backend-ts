@@ -48,7 +48,7 @@ jobs:
           filter_mode: 'nofilter'
           fail_on_error: true
   tsc:
-    name: 'tsc (node: ${{ matrix.node }}'
+    name: 'tsc (node: ${{ matrix.node }})'
     runs-on: ubuntu-latest
     strategy:
       matrix:

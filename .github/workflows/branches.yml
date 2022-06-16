@@ -1,4 +1,4 @@
-name: Branches
+name: branches
 
 on:
   pull_request:
@@ -10,7 +10,7 @@ on:
 
 jobs:
   check-base-branch:
-    name: Check Base
+    name: check base
     runs-on: ubuntu-latest
     steps:
       - name: Branch is related to CI and is based on main
