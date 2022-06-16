@@ -1,0 +1,68 @@
+name: reviewdog
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+
+jobs:
+  eslint:
+    name: 'eslint (node: ${{ matrix.node }})'
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [16]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm ci
+      - uses: reviewdog/action-eslint@v1
+        with:
+          reporter: 'github-check'
+          filter_mode: 'nofilter'
+          fail_on_error: true
+          eslint_flags: '.'
+  prettier:
+    name: 'prettier (node: ${{ matrix.node }})'
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [16]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm ci
+      - uses: EPMatt/reviewdog-action-prettier@v1
+        with:
+          reporter: 'github-check'
+          filter_mode: 'nofilter'
+          fail_on_error: true
+  tsc:
+    name: 'tsc (node: ${{ matrix.node }}'
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [16]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm ci
+      - uses: EPMatt/reviewdog-action-tsc@v1
+        with:
+          reporter: 'github-check'
+          filter_mode: 'nofilter'
+          fail_on_error: true
