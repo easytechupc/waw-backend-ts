@@ -5,11 +5,11 @@ import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 export class CompanyEntity {
   @AutoMap()
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
   @AutoMap()
   @Column()
-  name: string;
+  name!: string;
 
   @AutoMap()
   @Column()
@@ -17,5 +17,5 @@ export class CompanyEntity {
 
   @AutoMap()
   @Column()
-  email: string;
+  email!: string;
 }
