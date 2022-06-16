@@ -1,4 +1,4 @@
-import { Company } from "../../../employers/domain/entities/company";
+import { Company } from "./company.model";
 
 describe("Company", () => {
   it("should be defined", () => {
