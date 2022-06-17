@@ -8,6 +8,7 @@ import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 import { ormConfigFactory } from "./config/ormconfig";
 import { EmployersModule } from "./employers/employers.module";
+import { JobsModule } from "./jobs/jobs.module";
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { EmployersModule } from "./employers/employers.module";
       strategyInitializer: classes(),
     }),
     EmployersModule,
+    JobsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
