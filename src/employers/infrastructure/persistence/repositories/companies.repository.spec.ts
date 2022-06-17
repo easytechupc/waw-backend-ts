@@ -1,7 +1,7 @@
-import { CompaniesRepository } from './companies.repository';
+import { CompaniesRepository } from "./companies.repository";
 
-describe('CompaniesRepository', () => {
-  it('should be defined', () => {
+describe("CompaniesRepository", () => {
+  it("should be defined", () => {
     expect(new CompaniesRepository()).toBeDefined();
   });
 });

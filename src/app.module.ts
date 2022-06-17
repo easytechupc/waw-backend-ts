@@ -7,7 +7,7 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 import { ormConfigFactory } from "./config/ormconfig";
-import { EmployersModule } from './employers/employers.module';
+import { EmployersModule } from "./employers/employers.module";
 
 @Module({
   imports: [
