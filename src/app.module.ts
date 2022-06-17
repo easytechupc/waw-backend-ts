@@ -7,6 +7,7 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 import { ormConfigFactory } from "./config/ormconfig";
+import { EmployersModule } from "./employers/employers.module";
 import { JobsModule } from "./jobs/jobs.module";
 
 @Module({
@@ -20,6 +21,7 @@ import { JobsModule } from "./jobs/jobs.module";
     AutomapperModule.forRoot({
       strategyInitializer: classes(),
     }),
+    EmployersModule,
     JobsModule,
   ],
   controllers: [AppController],
