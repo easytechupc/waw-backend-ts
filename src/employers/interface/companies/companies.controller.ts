@@ -78,7 +78,7 @@ export class CompaniesController {
     const result = await this.service.update(id, mapped);
     const resource = this.mapper.map(result, Company, CompanyResource);
     return {
-      statusCode: HttpStatus.CREATED,
+      statusCode: HttpStatus.OK,
       message: `Company with id ${id} was updated successfully.`,
       resource: resource,
     };
