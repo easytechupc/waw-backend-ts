@@ -1,30 +1,9 @@
 import { Test, TestingModule } from "@nestjs/testing";
-import { TypeOrmModuleOptions } from "@nestjs/typeorm";
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 import { AppModule } from "./app.module";
-
-@Entity()
-class FakeEntity {
-  @PrimaryGeneratedColumn()
-  id?: number;
-
-  @Column()
-  name?: string;
-}
+import { createORMConfig } from "test/utils/ormconfig";
 
 jest.mock("./config/ormconfig", () => {
-  return {
-    ormConfigFactory: jest.fn(() =>
-      Promise.resolve<TypeOrmModuleOptions>({
-        type: "sqlite",
-        database: ":memory:",
-        synchronize: true,
-        dropSchema: true,
-        entities: [FakeEntity],
-        logging: false,
-      })
-    ),
-  };
+  return { ormConfigFactory: jest.fn(() => createORMConfig()) };
 });
 
 describe("AppModule", () => {
