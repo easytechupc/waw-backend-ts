@@ -8,14 +8,14 @@ export class CompanyEntity {
   id!: number;
 
   @AutoMap()
-  @Column()
+  @Column({ length: 200, unique: true })
   name!: string;
 
   @AutoMap()
-  @Column()
+  @Column({ length: 200, nullable: true })
   address?: string;
 
   @AutoMap()
-  @Column()
+  @Column({ length: 200 })
   email!: string;
 }
