@@ -11,10 +11,10 @@ import {
   Post,
   Put,
 } from "@nestjs/common";
-import { CompanyRequest } from "src/employers/application/transform/resources/company.request";
-import { CompanyResource } from "src/employers/application/transform/resources/company.resource";
-import { Company } from "src/employers/domain/entities/company.model";
-import { CompaniesService } from "src/employers/domain/services/companies.service/companies.service";
+import { CompanyRequest } from "src/api/employers/application/transform/resources/company.request";
+import { CompanyResource } from "src/api/employers/application/transform/resources/company.resource";
+import { Company } from "src/api/employers/domain/entities/company.model";
+import { CompaniesService } from "src/api/employers/domain/services/companies.service/companies.service";
 
 @Controller("api/v1/companies")
 export class CompaniesController {

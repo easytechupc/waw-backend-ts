@@ -1,8 +1,8 @@
 import { Mapper } from "@automapper/core";
 import { InjectMapper } from "@automapper/nestjs";
 import { InjectRepository } from "@nestjs/typeorm";
-import { Offer } from "src/jobs/domain/entities/offer.model";
-import { IOffersRepository } from "src/jobs/domain/repositories/offers.repository";
+import { Offer } from "src/api/jobs/domain/entities/offer.model";
+import { IOffersRepository } from "src/api/jobs/domain/repositories/offers.repository";
 import { Repository } from "typeorm";
 import { OfferEntity } from "../entities/offer.entity";
 

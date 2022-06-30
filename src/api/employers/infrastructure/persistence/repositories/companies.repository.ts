@@ -1,8 +1,8 @@
 import { Mapper } from "@automapper/core";
 import { InjectMapper } from "@automapper/nestjs";
 import { InjectRepository } from "@nestjs/typeorm";
-import { Company } from "src/employers/domain/entities/company.model";
-import { ICompaniesRepository } from "src/employers/domain/repositories/companies.repository";
+import { Company } from "src/api/employers/domain/entities/company.model";
+import { ICompaniesRepository } from "src/api/employers/domain/repositories/companies.repository";
 import { Repository } from "typeorm";
 import { CompanyEntity } from "../entities/company.entity";
 

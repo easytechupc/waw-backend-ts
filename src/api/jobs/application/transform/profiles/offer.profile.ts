@@ -1,7 +1,7 @@
 import { createMap, Mapper, MappingProfile } from "@automapper/core";
 import { AutomapperProfile, InjectMapper } from "@automapper/nestjs";
-import { Offer } from "src/jobs/domain/entities/offer.model";
-import { OfferEntity } from "src/jobs/infrastructure/persistence/entities/offer.entity";
+import { Offer } from "src/api/jobs/domain/entities/offer.model";
+import { OfferEntity } from "src/api/jobs/infrastructure/persistence/entities/offer.entity";
 import { OfferRequest } from "../resources/offer.request";
 import { OfferResource } from "../resources/offer.resource";
 

@@ -11,11 +11,11 @@ import {
   Post,
   Put,
 } from "@nestjs/common";
-import { OfferRequest } from "src/jobs/application/transform/resources/offer.request";
-import { OfferResource } from "src/jobs/application/transform/resources/offer.resource";
-import { Offer } from "src/jobs/domain/entities/offer.model";
-import { OffersService } from "src/jobs/domain/services/offers.service";
-import { BaseResponse } from "src/shared/communication/BaseResponse";
+import { OfferRequest } from "src/api/jobs/application/transform/resources/offer.request";
+import { OfferResource } from "src/api/jobs/application/transform/resources/offer.resource";
+import { Offer } from "src/api/jobs/domain/entities/offer.model";
+import { OffersService } from "src/api/jobs/domain/services/offers.service";
+import { BaseResponse } from "src/api/shared/communication/BaseResponse";
 
 @Controller("api/v1/offers")
 export class OffersController {

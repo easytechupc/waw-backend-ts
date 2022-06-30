@@ -1,7 +1,7 @@
 import { createMap, Mapper, MappingProfile } from "@automapper/core";
 import { AutomapperProfile, InjectMapper } from "@automapper/nestjs";
-import { Company } from "src/employers/domain/entities/company.model";
-import { CompanyEntity } from "src/employers/infrastructure/persistence/entities/company.entity";
+import { Company } from "src/api/employers/domain/entities/company.model";
+import { CompanyEntity } from "src/api/employers/infrastructure/persistence/entities/company.entity";
 import { CompanyRequest } from "../resources/company.request";
 import { CompanyResource } from "../resources/company.resource";
 

@@ -2,7 +2,7 @@ import { classes } from "@automapper/classes";
 import { AutomapperModule } from "@automapper/nestjs";
 import { Test } from "@nestjs/testing";
 import { TypeOrmModule } from "@nestjs/typeorm";
-import { OffersRepositoryKey } from "src/jobs/domain/repositories/offers.repository";
+import { OffersRepositoryKey } from "src/api/jobs/domain/repositories/offers.repository";
 import { createORMConfig } from "test/utils/ormconfig";
 import { OfferEntity } from "../entities/offer.entity";
 import { OffersRepository } from "./offers.repository";
