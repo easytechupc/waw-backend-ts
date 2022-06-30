@@ -24,7 +24,4 @@ export class User {
 
   @AutoMap()
   about?: string;
-
-  @AutoMap()
-  profileViews?: number;
 }
