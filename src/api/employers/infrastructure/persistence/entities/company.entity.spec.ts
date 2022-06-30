@@ -2,6 +2,6 @@ import { CompanyEntity } from "src/api/employers/infrastructure/persistence/enti
 
 describe("CompanyEntity", () => {
   it("should be defined", () => {
-    expect(new CompanyEntity()).toBeDefined();
+    expect(CompanyEntity).toBeDefined();
   });
 });
