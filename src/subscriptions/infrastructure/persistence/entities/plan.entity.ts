@@ -12,10 +12,10 @@ export class PlanEntity {
   name!: string;
 
   @AutoMap()
-  @Column({ length: 200 })
+  @Column({ length: 500 })
   description!: string;
 
   @AutoMap()
-  @Column({ type: "decimal", precision: 5 })
+  @Column({ type: "decimal", precision: 10, scale: 2, unique: true })
   price!: number;
 }
