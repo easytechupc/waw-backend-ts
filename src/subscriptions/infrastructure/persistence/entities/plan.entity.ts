@@ -1,6 +1,7 @@
 import { AutoMap } from "@automapper/classes";
-import { Column, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
+@Entity("subscription_plans")
 export class PlanEntity {
   @AutoMap()
   @PrimaryGeneratedColumn()
