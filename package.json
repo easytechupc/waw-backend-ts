@@ -1,5 +1,6 @@
 {
   "name": "waw-backend-ts",
+  "title": "WAW API",
   "version": "0.0.0",
   "description": "WAW Backend Application, written with TypeScript and Nest.js, powered by Node.js",
   "author": "Easy Tech <hello@easytech.ga>",
@@ -21,7 +22,14 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "typeorm": "typeorm-ts-node-commonjs -d ./src/config/datasource.ts"
+    "schema:sync": "typeorm-ts-node-commonjs schema:sync",
+    "schema:log": "typeorm-ts-node-commonjs schema:log",
+    "schema:drop": "typeorm-ts-node-commonjs schema:drop",
+    "migrate:create": "typeorm-ts-node-commonjs migrations:create",
+    "migrate:generate": "typeorm-ts-node-commonjs migrations:generate",
+    "migrate:run": "typeorm-ts-node-commonjs migration:run",
+    "migration:revert": "typeorm-ts-node-commonjs migration:revert",
+    "typeorm": "typeorm-ts-node-commonjs"
   },
   "dependencies": {
     "@automapper/classes": "^8.3.7",
