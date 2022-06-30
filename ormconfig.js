@@ -10,7 +10,7 @@ const envConfig = require("dotenv").config({
 const env = key => envConfig.parsed[key] || process.env[key];
 
 const baseConfig = {
-  type: "mysql",
+  type: process.env.NODE_ENV === "test" ? "sqlite" : "mysql",
   database: env("DB_DATABASE"),
   entities: [path.resolve(__dirname, "src/**/*.entity.ts")],
   migrations: [path.resolve(__dirname, "src/database/migrations/**/*.ts")],
@@ -23,7 +23,12 @@ const baseConfig = {
 
 if (process.env.NODE_ENV !== "test") {
   module.exports = {
-    host: env("DB_HOST"),
+    host: env("DB_SOCKET_PATH") ? env("DB_SOCKET_PATH") : env("DB_HOST"),
+    extra: env("DB_SOCKET_PATH")
+      ? {
+          socketPath: env("DB_SOCKET_PATH"),
+        }
+      : undefined,
     port: env("DB_PORT"),
     username: env("DB_USER"),
     password: env("DB_PASSWORD"),
