@@ -11,6 +11,7 @@ export const ormConfigFactory = () => {
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
     autoLoadEntities: true,
+    dropSchema: true,
     logging: isProduction ? ["error", "warn"] : "all",
     synchronize: !isProduction,
   });
