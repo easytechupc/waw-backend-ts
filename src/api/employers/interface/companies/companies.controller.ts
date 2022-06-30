@@ -11,11 +11,13 @@ import {
   Post,
   Put,
 } from "@nestjs/common";
+import { ApiTags } from "@nestjs/swagger";
 import { CompanyRequest } from "src/api/employers/application/transform/resources/company.request";
 import { CompanyResource } from "src/api/employers/application/transform/resources/company.resource";
 import { Company } from "src/api/employers/domain/entities/company.model";
 import { CompaniesService } from "src/api/employers/domain/services/companies.service/companies.service";
 
+@ApiTags("Companies")
 @Controller("api/v1/companies")
 export class CompaniesController {
   constructor(

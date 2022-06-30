@@ -11,12 +11,14 @@ import {
   Post,
   Put,
 } from "@nestjs/common";
+import { ApiTags } from "@nestjs/swagger";
 import { OfferRequest } from "src/api/jobs/application/transform/resources/offer.request";
 import { OfferResource } from "src/api/jobs/application/transform/resources/offer.resource";
 import { Offer } from "src/api/jobs/domain/entities/offer.model";
 import { OffersService } from "src/api/jobs/domain/services/offers.service";
 import { BaseResponse } from "src/api/shared/communication/BaseResponse";
 
+@ApiTags("Offers")
 @Controller("api/v1/offers")
 export class OffersController {
   constructor(
