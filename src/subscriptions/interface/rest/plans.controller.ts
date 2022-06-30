@@ -90,7 +90,7 @@ export class PlansController {
       return {
         statusCode: HttpStatus.NO_CONTENT,
         message: `Subscription plan with id ${id} was deleted successfully.`,
-        resource: false,
+        resource: [],
       };
     }
 
