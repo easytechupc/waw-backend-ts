@@ -9,6 +9,7 @@ import { AppService } from "./app.service";
 import { ormConfigFactory } from "./config/ormconfig";
 import { EmployersModule } from "./employers/employers.module";
 import { JobsModule } from "./jobs/jobs.module";
+import { UsersModule } from "./users/users.module";
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { JobsModule } from "./jobs/jobs.module";
     }),
     EmployersModule,
     JobsModule,
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
