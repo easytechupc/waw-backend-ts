@@ -19,7 +19,7 @@ export const DatabaseConfig = (): TypeOrmModuleOptions => ({
     ? undefined
     : process.env.DB_PASSWORD || "root",
   database: process.env.DB_NAME || "waw",
-  entities: [join(__dirname, "../", "**/*.entity.ts")],
+  entities: [join(__dirname, "../", "**/*.entity.{js,ts}")],
   migrations: [join(__dirname, "../", "database/migrations/**/*.ts")],
   logging: process.env.DB_LOGGING === "true",
   synchronize: process.env.DB_SYNCHRONIZE === "true",

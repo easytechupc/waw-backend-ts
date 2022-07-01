@@ -12,7 +12,7 @@ const env = key => envConfig.parsed[key] || process.env[key];
 const baseConfig = {
   type: process.env.NODE_ENV === "test" ? "sqlite" : "mysql",
   database: env("DB_DATABASE"),
-  entities: [path.resolve(__dirname, "src/**/*.entity.ts")],
+  entities: [path.resolve(__dirname, "src/**/*.entity.{js,ts}")],
   migrations: [path.resolve(__dirname, "src/database/migrations/**/*.ts")],
   logger: "advanced-console",
   logging: ["warn", "error"],
