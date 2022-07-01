@@ -1,7 +1,7 @@
 import { createMap, Mapper, MappingProfile } from "@automapper/core";
 import { AutomapperProfile, InjectMapper } from "@automapper/nestjs";
-import { User } from "src/users/domain/entities/user.model";
-import { UserEntity } from "src/users/infraestructure/persistence/entities/user.entity";
+import { User } from "src/api/users/domain/entities/user.model";
+import { UserEntity } from "src/api/users/infraestructure/persistence/entities/user.entity";
 import { UserRequest } from "../resources/user.request";
 import { UserResource } from "../resources/user.resource";
 

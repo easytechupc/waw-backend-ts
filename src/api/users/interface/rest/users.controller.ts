@@ -11,10 +11,10 @@ import {
   Post,
   Put,
 } from "@nestjs/common";
-import { UserRequest } from "src/users/application/transform/resources/user.request";
-import { UserResource } from "src/users/application/transform/resources/user.resource";
-import { User } from "src/users/domain/entities/user.model";
-import { UsersService } from "src/users/domain/services/users.service";
+import { UserRequest } from "src/api/users/application/transform/resources/user.request";
+import { UserResource } from "src/api/users/application/transform/resources/user.resource";
+import { User } from "src/api/users/domain/entities/user.model";
+import { UsersService } from "src/api/users/domain/services/users.service";
 import { BaseResponse } from "src/api/shared/communication/BaseResponse";
 
 @Controller("api/v1/users")

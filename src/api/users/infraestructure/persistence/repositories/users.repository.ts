@@ -1,8 +1,8 @@
 import { Mapper } from "@automapper/core";
 import { InjectMapper } from "@automapper/nestjs";
 import { InjectRepository } from "@nestjs/typeorm";
-import { User } from "src/users/domain/entities/user.model";
-import { IUsersRepository } from "src/users/domain/repositories/users.repository";
+import { User } from "src/api/users/domain/entities/user.model";
+import { IUsersRepository } from "src/api/users/domain/repositories/users.repository";
 import { Repository } from "typeorm";
 import { UserEntity } from "../entities/user.entity";
 
