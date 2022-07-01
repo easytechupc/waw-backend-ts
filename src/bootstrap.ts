@@ -27,6 +27,10 @@ export const bootstrap = async () => {
     .setVersion(config.get("app.version") as string)
     .addTag("Companies", "Create, read, update and delete registered companies")
     .addTag("Offers", "Create, read, update and delete registered offers")
+    .addTag(
+      "SubscriptionPlans",
+      "Create, read, update and delete registered subscription plans"
+    )
     .build();
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup("docs", app, document);

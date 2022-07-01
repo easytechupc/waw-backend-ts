@@ -14,11 +14,18 @@ import {
   Post,
   Put,
 } from "@nestjs/common";
+import {
+  ApiCreatedResponse,
+  ApiNoContentResponse,
+  ApiOkResponse,
+  ApiTags,
+} from "@nestjs/swagger";
 import { PlanRequest } from "src/api/subscriptions/application/transform/resources/plan.request";
 import { PlanResource } from "src/api/subscriptions/application/transform/resources/plan.resource";
 import { Plan } from "src/api/subscriptions/domain/entities/plan.model";
 import { PlansService } from "src/api/subscriptions/domain/services/plans/plans.service";
 
+@ApiTags("SubscriptionPlans")
 @Controller("api/v1/plans")
 export class PlansController {
   constructor(
@@ -27,12 +34,19 @@ export class PlansController {
   ) {}
 
   @Get()
+  @ApiOkResponse({
+    description:
+      "All the stored subscription plans were succesfully retrieved.",
+  })
   async getAll(): Promise<PlanResource[]> {
     const plans = await this.service.getAll();
     return this.mapper.mapArray(plans, Plan, PlanResource);
   }
 
   @Get(":id")
+  @ApiOkResponse({
+    description: `The subscription with id was succesfully retrieved.`,
+  })
   async getById(@Param("id") id: number): Promise<PlanResource> {
     const plan = await this.service.getById(id);
     if (plan === null) {
@@ -45,6 +59,9 @@ export class PlansController {
   }
 
   @Post()
+  @ApiCreatedResponse({
+    description: "The subscritpion plan was succesfully created.",
+  })
   async create(@Body() plan: PlanRequest): Promise<PlanResource> {
     const mapped = this.mapper.map(plan, PlanRequest, Plan);
     const result = await this.service.create(mapped);
@@ -52,6 +69,9 @@ export class PlansController {
   }
 
   @Put(":id")
+  @ApiOkResponse({
+    description: "The subscritpion plan was succesfully updated.",
+  })
   update(
     @Param("id") id: number,
     @Body() plan: PlanRequest
@@ -60,6 +80,9 @@ export class PlansController {
   }
 
   @Patch(":id")
+  @ApiOkResponse({
+    description: "The subscritpion plan was succesfully updated.",
+  })
   async updatePartial(
     @Param("id") id: number,
     @Body() plan: Partial<PlanRequest>
@@ -71,6 +94,9 @@ export class PlansController {
 
   @Delete(":id")
   @HttpCode(HttpStatus.NO_CONTENT)
+  @ApiNoContentResponse({
+    description: "The subscription plan with id was succesfully deleted.",
+  })
   async delete(@Param("id") id: number): Promise<void> {
     const success = await this.service.delete(id);
     if (!success) {
