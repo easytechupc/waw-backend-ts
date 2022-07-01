@@ -42,7 +42,4 @@ jobs:
       - name: Build
         run: npm run build
       - name: Deploy to App Engine
-        run: |
-          cp app.yaml dist/
-          cd dist/
-          gcloud app deploy --quiet
+        run: gcloud app deploy --quiet

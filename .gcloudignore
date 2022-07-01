@@ -12,6 +12,8 @@
 # below:
 .git
 .gitignore
-
-# Insert .gitignore entries
-#!include:.gitignore
+.github
+.husky
+.env
+coverage
+node_modules
