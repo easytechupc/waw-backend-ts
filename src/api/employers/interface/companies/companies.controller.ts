@@ -5,7 +5,10 @@ import {
   Controller,
   Delete,
   Get,
+  HttpCode,
   HttpStatus,
+  InternalServerErrorException,
+  NotFoundException,
   Param,
   Patch,
   Post,
@@ -26,48 +29,35 @@ export class CompaniesController {
   ) {}
 
   @Get()
-  async getAll() {
+  async getAll(): Promise<CompanyResource[]> {
     const companies = await this.service.getAll();
-    const resources = this.mapper.mapArray(companies, Company, CompanyResource);
-    return {
-      statusCode: HttpStatus.OK,
-      message: "All stored companies where retrieved successfully.",
-      resource: resources,
-    };
+    return this.mapper.mapArray(companies, Company, CompanyResource);
   }
 
   @Get(":id")
-  async getById(@Param("id") id: number) {
+  async getById(@Param("id") id: number): Promise<CompanyResource> {
     const company = await this.service.getById(id);
     if (company === null) {
-      return {
+      throw new NotFoundException({
         statusCode: HttpStatus.NOT_FOUND,
-        message: `Company with id ${id} not found`,
-        resource: null,
-      };
+        message: "The requested company was not found.",
+      });
     }
-    const resource = this.mapper.map(company, Company, CompanyResource);
-    return {
-      statusCode: HttpStatus.OK,
-      message: `Company with id ${id} was retrieved successfully.`,
-      resource: resource,
-    };
+    return this.mapper.map(company, Company, CompanyResource);
   }
 
   @Post()
-  async create(@Body() company: CompanyRequest) {
+  async create(@Body() company: CompanyRequest): Promise<CompanyResource> {
     const mapped = this.mapper.map(company, CompanyRequest, Company);
     const result = await this.service.create(mapped);
-    const resource = this.mapper.map(result, Company, CompanyResource);
-    return {
-      statusCode: HttpStatus.CREATED,
-      message: `A new company was created successfully.`,
-      resource: resource,
-    };
+    return this.mapper.map(result, Company, CompanyResource);
   }
 
   @Put(":id")
-  update(@Param("id") id: number, @Body() company: CompanyRequest) {
+  update(
+    @Param("id") id: number,
+    @Body() company: CompanyRequest
+  ): Promise<CompanyResource> {
     return this.updatePartial(id, company);
   }
 
@@ -75,32 +65,21 @@ export class CompaniesController {
   async updatePartial(
     @Param("id") id: number,
     @Body() company: Partial<CompanyRequest>
-  ) {
+  ): Promise<CompanyResource> {
     const mapped = this.mapper.map(company, CompanyRequest, Company);
     const result = await this.service.update(id, mapped);
-    const resource = this.mapper.map(result, Company, CompanyResource);
-    return {
-      statusCode: HttpStatus.OK,
-      message: `Company with id ${id} was updated successfully.`,
-      resource: resource,
-    };
+    return this.mapper.map(result, Company, CompanyResource);
   }
 
   @Delete(":id")
-  async delete(@Param("id") id: number) {
+  @HttpCode(HttpStatus.NO_CONTENT)
+  async delete(@Param("id") id: number): Promise<void> {
     const success = await this.service.delete(id);
-    if (success) {
-      return {
-        statusCode: HttpStatus.OK,
-        message: `Company with id ${id} was deleted successfully.`,
-        resource: true,
-      };
+    if (!success) {
+      throw new InternalServerErrorException({
+        statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+        message: "Something went wrong while deleting the requested company.",
+      });
     }
-
-    return {
-      statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
-      message: `Something went wrong while deleting offer with id ${id}`,
-      resource: false,
-    };
   }
 }
