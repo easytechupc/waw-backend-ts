@@ -1,26 +1,10 @@
-import { classes } from "@automapper/classes";
-import { AutomapperModule } from "@automapper/nestjs";
 import { Module } from "@nestjs/common";
-import { ConfigModule } from "@nestjs/config";
-import { TypeOrmModule } from "@nestjs/typeorm";
 
-import { AppController } from "./app.controller";
-import { AppService } from "./app.service";
-import { ormConfigFactory } from "./config/ormconfig";
+import { ApiModule } from "./api/api.module";
+import { ConfigModule } from "./config/config.module";
+import { DatabaseModule } from "./database/database.module";
 
 @Module({
-  imports: [
-    ConfigModule.forRoot({
-      isGlobal: true,
-    }),
-    TypeOrmModule.forRootAsync({
-      useFactory: ormConfigFactory,
-    }),
-    AutomapperModule.forRoot({
-      strategyInitializer: classes(),
-    }),
-  ],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [ConfigModule, DatabaseModule, ApiModule],
 })
 export class AppModule {}

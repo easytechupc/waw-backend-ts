@@ -17,5 +17,6 @@
   "eslint.validate": ["javascript", "typescript"],
   "[javascript][typescript][json][jsonc][markdown][yaml]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "npm.exclude": "**/dist"
 }
