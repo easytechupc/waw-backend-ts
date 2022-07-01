@@ -8,7 +8,7 @@ const env = (key: string) => process.env[key];
 export const DatabaseConfig = (): DataSourceOptions => {
   const base = {
     entities: [resolve(__dirname, "../", "**/*.entity.{js,ts}")],
-    migrations: [resolve(__dirname, "../", "database/migrations/**/*.ts")],
+    migrations: [resolve(__dirname, "../", "database/migrations/**/*.{js,ts}")],
     logger: "advanced-console",
     logging: ["warn", "error"],
     synchronize: env("DB_SYNCHRONIZE") === "true",
