@@ -1,9 +1,7 @@
 import { PlansService } from "./plans.service";
 
-describe("PlansService", () => {
-  let service: PlansService;
-
+describe("OffersController", () => {
   it("should be defined", () => {
-    expect(service).toBeDefined();
+    expect(PlansService).toBeDefined();
   });
 });

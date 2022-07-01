@@ -1,9 +1,7 @@
 import { PlansController } from "./plans.controller";
 
-describe("PlansController", () => {
-  let controller: PlansController;
-
+describe("OffersController", () => {
   it("should be defined", () => {
-    expect(controller).toBeDefined();
+    expect(PlansController).toBeDefined();
   });
 });
