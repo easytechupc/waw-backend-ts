@@ -3,12 +3,16 @@ import { Logger, ValidationPipe } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 import { NestFactory } from "@nestjs/core";
+import { NestExpressApplication } from "@nestjs/platform-express";
 
 import { AppModule } from "./app.module";
 
 export const bootstrap = async () => {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule);
   const config = app.get(ConfigService);
+
+  const logger = new Logger("Bootstrap");
+  const port = config.get<number>("app.port") || 3000;
 
   // CORS
   app.enableCors();
@@ -27,10 +31,8 @@ export const bootstrap = async () => {
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup("docs", app, document);
 
-  const logger = new Logger("Bootstrap");
-  const port = config.get<number>("app.port") || 3000;
-
   await app.listen(port, () => {
     logger.log(`App available on http://localhost:${port}`);
+    logger.log(`Swagger available on http://localhost:${port}/docs`);
   });
 };
