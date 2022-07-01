@@ -15,7 +15,7 @@ import { UserRequest } from "src/users/application/transform/resources/user.requ
 import { UserResource } from "src/users/application/transform/resources/user.resource";
 import { User } from "src/users/domain/entities/user.model";
 import { UsersService } from "src/users/domain/services/users.service";
-import { BaseResponse } from "src/shared/communication/BaseResponse";
+import { BaseResponse } from "src/api/shared/communication/BaseResponse";
 
 @Controller("api/v1/users")
 export class UsersController {
