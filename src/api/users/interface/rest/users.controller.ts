@@ -6,6 +6,8 @@ import {
   Delete,
   Get,
   HttpStatus,
+  InternalServerErrorException,
+  NotFoundException,
   Param,
   Patch,
   Post,
@@ -15,7 +17,6 @@ import { UserRequest } from "src/api/users/application/transform/resources/user.
 import { UserResource } from "src/api/users/application/transform/resources/user.resource";
 import { User } from "src/api/users/domain/entities/user.model";
 import { UsersService } from "src/api/users/domain/services/users.service";
-import { BaseResponse } from "src/api/shared/communication/BaseResponse";
 
 @Controller("api/v1/users")
 export class UsersController {
@@ -25,50 +26,35 @@ export class UsersController {
   ) {}
 
   @Get()
-  async getAll(): Promise<BaseResponse<UserResource[]>> {
+  async getAll(): Promise<UserResource[]> {
     const users = await this.usersService.getAll();
-    const resources = this.mapper.mapArray(users, User, UserResource);
-    return {
-      statusCode: HttpStatus.OK,
-      resource: resources,
-    };
+    return this.mapper.mapArray(users, User, UserResource);
   }
 
   @Get(":id")
-  async getById(
-    @Param("id") id: number
-  ): Promise<BaseResponse<UserResource | null>> {
+  async getById(@Param("id") id: number): Promise<UserResource> {
     const entity = await this.usersService.getById(id);
     if (entity === null) {
-      return {
+      throw new NotFoundException({
         statusCode: HttpStatus.NOT_FOUND,
-        message: `User with id ${id} not found`,
-        resource: null,
-      };
+        message: "The requested user was not found",
+      });
     }
-    const resource = this.mapper.map(entity, User, UserResource);
-    return {
-      statusCode: HttpStatus.OK,
-      resource,
-    };
+    return this.mapper.map(entity, User, UserResource);
   }
 
   @Post()
-  async create(@Body() user: UserRequest): Promise<BaseResponse<UserResource>> {
+  async create(@Body() user: UserRequest): Promise<UserResource> {
     const mapped = this.mapper.map(user, UserRequest, User);
     const result = await this.usersService.create(mapped);
-    const resource = this.mapper.map(result, User, UserResource);
-    return {
-      statusCode: HttpStatus.CREATED,
-      resource,
-    };
+    return this.mapper.map(result, User, UserResource);
   }
 
   @Put(":id")
   update(
     @Param("id") id: number,
     @Body() user: UserRequest
-  ): Promise<BaseResponse<UserResource>> {
+  ): Promise<UserResource> {
     return this.updatePartial(id, user);
   }
 
@@ -76,30 +62,20 @@ export class UsersController {
   async updatePartial(
     @Param("id") id: number,
     @Body() user: Partial<UserRequest>
-  ): Promise<BaseResponse<UserResource>> {
+  ): Promise<UserResource> {
     const mapped = this.mapper.map(user, UserRequest, User);
     const result = await this.usersService.update(id, mapped);
-    const resource = this.mapper.map(result, User, UserResource);
-    return {
-      statusCode: HttpStatus.OK,
-      resource,
-    };
+    return this.mapper.map(result, User, UserResource);
   }
 
   @Delete(":id")
-  async delete(@Param("id") id: number): Promise<BaseResponse<boolean>> {
+  async delete(@Param("id") id: number): Promise<void> {
     const success = await this.usersService.delete(id);
-    if (success) {
-      return {
-        statusCode: HttpStatus.OK,
-        message: `User with id ${id} successfully deleted`,
-        resource: true,
-      };
+    if (!success) {
+      throw new InternalServerErrorException({
+        statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+        message: "Something went wrong while deleting the requested user",
+      });
     }
-    return {
-      statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
-      message: `Something went wrong while deleting user with id ${id}`,
-      resource: false,
-    };
   }
 }
