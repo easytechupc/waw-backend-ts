@@ -1,5 +1,6 @@
 runtime: nodejs16
 entrypoint: npm run start:prod
+service: $APPENGINE_SERVICE_NAME
 instance_class: B2
 env_variables:
   NODE_ENV: production
