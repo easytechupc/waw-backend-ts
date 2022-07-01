@@ -5,7 +5,10 @@ import {
   Controller,
   Delete,
   Get,
+  HttpCode,
   HttpStatus,
+  InternalServerErrorException,
+  NotFoundException,
   Param,
   Patch,
   Post,
@@ -22,49 +25,37 @@ export class PlansController {
     private readonly service: PlansService,
     @InjectMapper() private readonly mapper: Mapper
   ) {}
+
   @Get()
-  async getAll() {
+  async getAll(): Promise<PlanResource[]> {
     const plans = await this.service.getAll();
-    const resources = this.mapper.mapArray(plans, Plan, PlanResource);
-    return {
-      statusCode: HttpStatus.OK,
-      message: "All stored subscription plans where retrieved successfully.",
-      resource: resources,
-    };
+    return this.mapper.mapArray(plans, Plan, PlanResource);
   }
 
   @Get(":id")
-  async getById(@Param("id") id: number) {
+  async getById(@Param("id") id: number): Promise<PlanResource> {
     const plan = await this.service.getById(id);
     if (plan === null) {
-      return {
+      throw new NotFoundException({
         statusCode: HttpStatus.NOT_FOUND,
-        message: `Subscription plan with id ${id} not found`,
-        resource: null,
-      };
+        message: "The requested plan was not found.",
+      });
     }
-    const resource = this.mapper.map(plan, Plan, PlanResource);
-    return {
-      statusCode: HttpStatus.OK,
-      message: `Subscription plan with id ${id} was retrieved successfully.`,
-      resource: resource,
-    };
+    return this.mapper.map(plan, Plan, PlanResource);
   }
 
   @Post()
-  async create(@Body() plan: PlanRequest) {
+  async create(@Body() plan: PlanRequest): Promise<PlanResource> {
     const mapped = this.mapper.map(plan, PlanRequest, Plan);
     const result = await this.service.create(mapped);
-    const resource = this.mapper.map(result, Plan, PlanResource);
-    return {
-      statusCode: HttpStatus.CREATED,
-      message: `A new subscription plan was created successfully.`,
-      resource: resource,
-    };
+    return this.mapper.map(result, Plan, PlanResource);
   }
 
   @Put(":id")
-  update(@Param("id") id: number, @Body() plan: PlanRequest) {
+  update(
+    @Param("id") id: number,
+    @Body() plan: PlanRequest
+  ): Promise<PlanResource> {
     return this.updatePartial(id, plan);
   }
 
@@ -72,32 +63,21 @@ export class PlansController {
   async updatePartial(
     @Param("id") id: number,
     @Body() plan: Partial<PlanRequest>
-  ) {
+  ): Promise<PlanResource> {
     const mapped = this.mapper.map(plan, PlanRequest, Plan);
     const result = await this.service.update(id, mapped);
-    const resource = this.mapper.map(result, Plan, PlanResource);
-    return {
-      statusCode: HttpStatus.OK,
-      message: `Subscription plan with id ${id} was updated successfully.`,
-      resource: resource,
-    };
+    return this.mapper.map(result, Plan, PlanResource);
   }
 
   @Delete(":id")
-  async delete(@Param("id") id: number) {
+  @HttpCode(HttpStatus.NO_CONTENT)
+  async delete(@Param("id") id: number): Promise<void> {
     const success = await this.service.delete(id);
-    if (success) {
-      return {
-        statusCode: HttpStatus.NO_CONTENT,
-        message: `Subscription plan with id ${id} was deleted successfully.`,
-        resource: [],
-      };
+    if (!success) {
+      throw new InternalServerErrorException({
+        statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+        message: "Something went wrong while deleting the requested plan.",
+      });
     }
-
-    return {
-      statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
-      message: `Something went wrong while deleting subscription plan with id ${id}`,
-      resource: false,
-    };
   }
 }
