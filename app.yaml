@@ -1,5 +1,5 @@
-runtime: nodejs12
-service: $APPENGINE_SERVICE_NAME
+runtime: nodejs16
+entrypoint: npm run start:prod
 instance_class: B2
 env_variables:
   NODE_ENV: production
