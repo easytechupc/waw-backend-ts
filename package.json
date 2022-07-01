@@ -1,5 +1,6 @@
 {
   "name": "waw-backend-ts",
+  "title": "WAW API",
   "version": "0.0.0",
   "description": "WAW Backend Application, written with TypeScript and Nest.js, powered by Node.js",
   "author": "Easy Tech <hello@easytech.ga>",
@@ -13,7 +14,7 @@
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
-    "start:prod": "node dist/main",
+    "start:prod": "node dist/src/main",
     "lint": "eslint --ext js,ts --cache .",
     "lint:fix": "eslint --ext js,ts --cache --fix .",
     "test": "jest",
@@ -21,7 +22,14 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "typeorm": "typeorm-ts-node-commonjs -d ./src/config/datasource.ts"
+    "schema:sync": "typeorm-ts-node-commonjs schema:sync -d src/config/cli.config.ts",
+    "schema:log": "typeorm-ts-node-commonjs schema:log -d src/config/cli.config.ts",
+    "schema:drop": "typeorm-ts-node-commonjs schema:drop -d src/config/cli.config.ts",
+    "migrate:create": "typeorm-ts-node-commonjs migration:create",
+    "migrate:generate": "typeorm-ts-node-commonjs migration:generate -d src/config/cli.config.ts",
+    "migrate:run": "typeorm-ts-node-commonjs migration:run -d src/config/cli.config.ts",
+    "migrate:revert": "typeorm-ts-node-commonjs migration:revert -d src/config/cli.config.ts",
+    "typeorm": "typeorm-ts-node-commonjs"
   },
   "dependencies": {
     "@automapper/classes": "^8.3.7",
@@ -31,12 +39,16 @@
     "@nestjs/config": "^2.1.0",
     "@nestjs/core": "^8.0.0",
     "@nestjs/platform-express": "^8.0.0",
+    "@nestjs/swagger": "^5.2.1",
     "@nestjs/typeorm": "^8.1.4",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.13.2",
     "mysql2": "^2.3.3",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.5.5",
     "sqlite3": "^5.0.8",
+    "swagger-ui-express": "^4.4.0",
     "typeorm": "^0.3.6"
   },
   "devDependencies": {
