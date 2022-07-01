@@ -1,7 +1,7 @@
 import { createMap, Mapper, MappingProfile } from "@automapper/core";
 import { AutomapperProfile, InjectMapper } from "@automapper/nestjs";
-import { Plan } from "src/subscriptions/domain/entities/plan.model";
-import { PlanEntity } from "src/subscriptions/infrastructure/persistence/entities/plan.entity";
+import { Plan } from "src/api/subscriptions/domain/entities/plan.model";
+import { PlanEntity } from "src/api/subscriptions/infrastructure/persistence/entities/plan.entity";
 import { PlanRequest } from "../resources/plan.request";
 import { PlanResource } from "../resources/plan.resource";
 

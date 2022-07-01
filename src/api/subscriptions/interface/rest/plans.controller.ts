@@ -11,10 +11,10 @@ import {
   Post,
   Put,
 } from "@nestjs/common";
-import { PlanRequest } from "src/subscriptions/application/transform/resources/plan.request";
-import { PlanResource } from "src/subscriptions/application/transform/resources/plan.resource";
-import { Plan } from "src/subscriptions/domain/entities/plan.model";
-import { PlansService } from "src/subscriptions/domain/services/plans/plans.service";
+import { PlanRequest } from "src/api/subscriptions/application/transform/resources/plan.request";
+import { PlanResource } from "src/api/subscriptions/application/transform/resources/plan.resource";
+import { Plan } from "src/api/subscriptions/domain/entities/plan.model";
+import { PlansService } from "src/api/subscriptions/domain/services/plans/plans.service";
 
 @Controller("api/v1/plans")
 export class PlansController {

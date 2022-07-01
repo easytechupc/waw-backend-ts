@@ -1,8 +1,8 @@
 import { Mapper } from "@automapper/core";
 import { InjectMapper } from "@automapper/nestjs";
 import { InjectRepository } from "@nestjs/typeorm";
-import { Plan } from "src/subscriptions/domain/entities/plan.model";
-import { IPlansRepository } from "src/subscriptions/domain/repositories/plans.repository";
+import { Plan } from "src/api/subscriptions/domain/entities/plan.model";
+import { IPlansRepository } from "src/api/subscriptions/domain/repositories/plans.repository";
 import { Repository } from "typeorm";
 import { PlanEntity } from "../entities/plan.entity";
 
