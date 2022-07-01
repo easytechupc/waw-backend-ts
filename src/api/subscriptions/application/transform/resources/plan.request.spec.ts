@@ -1,7 +1,7 @@
-import { PlanRequest } from './plan.request';
+import { PlanRequest } from "./plan.request";
 
-describe('PlanRequest', () => {
-  it('should be defined', () => {
+describe("PlanRequest", () => {
+  it("should be defined", () => {
     expect(new PlanRequest()).toBeDefined();
   });
 });
